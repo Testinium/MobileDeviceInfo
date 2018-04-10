@@ -25,9 +25,14 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
     public DeviceInfoModel<Android> findDevices(String localPath) throws IOException, DeviceNotFoundException {
         DeviceInfoModel<Android> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Android>>() {
         });
-        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
-            throw new DeviceNotFoundException("Device Not Found");
-        }
+//        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
+//            throw new DeviceNotFoundException("Device Not Found");
+//            try {
+//                throw new DeviceNotFoundException("Android Device Not Found");
+//            }catch (Exception e){
+//                System.err.println(e.toString());
+//            }
+//        }
         return deviceInfoModel;
     }
 
@@ -37,7 +42,7 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
         List<Map<String, Object>> deviceMapList = new ArrayList<>();
         Map<String, Object> device = new HashMap<>();
 
-        Process deviceListProcess = ProcessHelper.runTimeExec(String.format("%s %s", localPath, ADB_LIST_SHELL_COMMAND));
+        Process deviceListProcess = ProcessHelper.runTimeExec(String.format("%s%s", localPath, ADB_LIST_SHELL_COMMAND));
         BufferedReader reader = new BufferedReader(new InputStreamReader(deviceListProcess.getInputStream()));
         String line;
         while ((line = reader.readLine()) != null) {
@@ -45,7 +50,7 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
                 continue;
             }
             String[] serialNumberArray = line.replace(" ", "").split("device");
-            Process deviceDetailInfoProcess = ProcessHelper.runTimeExec(String.format("%s %s", localPath, ADB_SERIAL_NUMBER_PUT_SHELL_COMMAND).replace("serialNumber", serialNumberArray[0].trim()));
+            Process deviceDetailInfoProcess = ProcessHelper.runTimeExec(String.format("%s%s", localPath, ADB_SERIAL_NUMBER_PUT_SHELL_COMMAND).replace("serialNumber", serialNumberArray[0].trim()));
             String infoLine;
             BufferedReader infoReader = new BufferedReader(new InputStreamReader(deviceDetailInfoProcess.getInputStream()));
             while ((infoLine = infoReader.readLine()) != null) {

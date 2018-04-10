@@ -27,9 +27,14 @@ public class IosDeviceFinder implements DeviceFinder<Ios> {
             throws IOException, DeviceNotFoundException {
         DeviceInfoModel<Ios> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Ios>>() {
         });
-        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
-            throw new DeviceNotFoundException("Device Not Found");
-        }
+//        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
+//            throw new DeviceNotFoundException("Device Not Found");
+//            try {
+//                throw new DeviceNotFoundException("Ios Device Not Found");
+//            }catch (Exception e){
+//                System.err.println(e.toString());
+//            }
+//        }
         return deviceInfoModel;
     }
 
@@ -39,7 +44,7 @@ public class IosDeviceFinder implements DeviceFinder<Ios> {
         List<Map<String, Object>> deviceMapList = new ArrayList<>();
         Map<String, Object> device = new HashMap<>();
 
-        Process deviceListProcess = ProcessHelper.runTimeExec(String.format("%s %s", localPath, LIB_MOBILE_DEVICE_LIST_SHELL_COMMAND));
+        Process deviceListProcess = ProcessHelper.runTimeExec(String.format("%s%s", localPath, LIB_MOBILE_DEVICE_LIST_SHELL_COMMAND));
         BufferedReader reader = new BufferedReader(new InputStreamReader(deviceListProcess.getInputStream()));
         String line;
         while ((line = reader.readLine()) != null) {
@@ -47,7 +52,7 @@ public class IosDeviceFinder implements DeviceFinder<Ios> {
                 continue;
             }
             String[] serialNumberArray = line.replace(" ", "").split("device");
-            Process deviceDetailInfoProcess = ProcessHelper.runTimeExec(String.format("%s %s", localPath, LIB_MOBILE_DEVICE_UDID_PUT_SHELL_COMMAND).replace("UniqueDeviceID", serialNumberArray[0].trim()));
+            Process deviceDetailInfoProcess = ProcessHelper.runTimeExec(String.format("%s%s", localPath, LIB_MOBILE_DEVICE_UDID_PUT_SHELL_COMMAND).replace("UniqueDeviceID", serialNumberArray[0].trim()));
 
             String infoLine;
             BufferedReader infoReader = new BufferedReader(new InputStreamReader(deviceDetailInfoProcess.getInputStream()));
