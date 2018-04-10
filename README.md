@@ -31,3 +31,18 @@ or
 ```
 
 For **Appium** projects, here's a usage:
+```
+        
+DesiredCapabilities capabilities = new DesiredCapabilities();
+capabilities.setCapability(CapabilityType.PLATFORM, device.getDeviceProductName());
+capabilities.setCapability("platformName", device.getDeviceProductName());
+capabilities.setCapability(CapabilityType.VERSION, device.getProductVersion());
+capabilities.setCapability("deviceName", device.getModelNumber());
+capabilities.setCapability("udid", device.getUniqueDeviceID());
+capabilities.setCapability("app", "#Your App File#");
+
+
+WebDriver driver = new RemoteWebDriver(new URL(URL), capabilities);
+
+driver.quit();
+```        
