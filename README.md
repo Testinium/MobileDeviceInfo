@@ -30,9 +30,18 @@ or
         System.out.println("Device id   - " + device.getUniqueDeviceID());
 ```
 
+or
+
+```
+ DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+ if (deviceInfo.anyDeviceConnected()) {
+        Device device = deviceInfo.getFirstDevice();
+        System.out.println("Device Name - " + device.getDeviceProductName());
+        System.out.println("Device id   - " + device.getUniqueDeviceID());
+```
+
 For **Appium** projects, here's a usage:
 ```
-        
 DesiredCapabilities capabilities = new DesiredCapabilities();
 capabilities.setCapability(CapabilityType.PLATFORM, device.getDeviceProductName());
 capabilities.setCapability("platformName", device.getDeviceProductName());
@@ -42,7 +51,5 @@ capabilities.setCapability("udid", device.getUniqueDeviceID());
 capabilities.setCapability("app", "#Your App File#");
 
 
-WebDriver driver = new RemoteWebDriver(new URL(URL), capabilities);
-
-driver.quit();
+driver = new RemoteWebDriver(new URL(URL), capabilities);
 ```        
