@@ -1,10 +1,10 @@
-package com.deviceinformation.deviceinfo.device;
+package com.testinium.deviceinformation.device;
 
-import com.deviceinformation.deviceinfo.exception.DeviceNotFoundException;
-import com.deviceinformation.deviceinfo.helper.JsonHelper;
-import com.deviceinformation.deviceinfo.helper.ProcessHelper;
-import com.deviceinformation.deviceinfo.model.Android;
-import com.deviceinformation.deviceinfo.model.DeviceInfoModel;
+import com.testinium.deviceinformation.exception.DeviceNotFoundException;
+import com.testinium.deviceinformation.helper.JsonHelper;
+import com.testinium.deviceinformation.helper.ProcessHelper;
+import com.testinium.deviceinformation.model.Android;
+import com.testinium.deviceinformation.model.DeviceInfoModel;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
 

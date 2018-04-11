@@ -1,8 +1,8 @@
-package com.deviceinformation.deviceinfo.device;
+package com.testinium.deviceinformation.device;
 
-import com.deviceinformation.deviceinfo.exception.DeviceNotFoundException;
-import com.deviceinformation.deviceinfo.model.Device;
-import com.deviceinformation.deviceinfo.model.DeviceInfoModel;
+import com.testinium.deviceinformation.exception.DeviceNotFoundException;
+import com.testinium.deviceinformation.model.Device;
+import com.testinium.deviceinformation.model.DeviceInfoModel;
 
 import java.io.IOException;
 import java.util.ArrayList;

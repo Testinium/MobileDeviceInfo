@@ -1,4 +1,4 @@
-package com.deviceinformation.deviceinfo.model;
+package com.testinium.deviceinformation.model;
 
 public interface Device {
 

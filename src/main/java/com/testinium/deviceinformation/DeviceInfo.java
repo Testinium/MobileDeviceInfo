@@ -1,7 +1,7 @@
-package com.deviceinformation.deviceinfo;
+package com.testinium.deviceinformation;
 
-import com.deviceinformation.deviceinfo.exception.DeviceNotFoundException;
-import com.deviceinformation.deviceinfo.model.Device;
+import com.testinium.deviceinformation.exception.DeviceNotFoundException;
+import com.testinium.deviceinformation.model.Device;
 
 import java.io.IOException;
 import java.util.List;

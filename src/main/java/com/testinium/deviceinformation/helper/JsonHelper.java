@@ -1,7 +1,7 @@
-package com.deviceinformation.deviceinfo.helper;
+package com.testinium.deviceinformation.helper;
 
-import com.deviceinformation.deviceinfo.model.Device;
-import com.deviceinformation.deviceinfo.model.DeviceInfoModel;
+import com.testinium.deviceinformation.model.Device;
+import com.testinium.deviceinformation.model.DeviceInfoModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

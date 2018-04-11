@@ -1,4 +1,4 @@
-package com.deviceinformation.deviceinfo.helper;
+package com.testinium.deviceinformation.helper;
 
 import java.io.IOException;
 

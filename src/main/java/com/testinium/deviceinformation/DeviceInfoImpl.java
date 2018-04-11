@@ -1,10 +1,10 @@
-package com.deviceinformation.deviceinfo;
+package com.testinium.deviceinformation;
 
-import com.deviceinformation.deviceinfo.device.DeviceFinder;
-import com.deviceinformation.deviceinfo.device.DeviceFinderFactory;
-import com.deviceinformation.deviceinfo.device.DeviceType;
-import com.deviceinformation.deviceinfo.exception.DeviceNotFoundException;
-import com.deviceinformation.deviceinfo.model.Device;
+import com.testinium.deviceinformation.device.DeviceFinderFactory;
+import com.testinium.deviceinformation.device.DeviceType;
+import com.testinium.deviceinformation.device.DeviceFinder;
+import com.testinium.deviceinformation.exception.DeviceNotFoundException;
+import com.testinium.deviceinformation.model.Device;
 import org.apache.commons.exec.OS;
 import org.apache.commons.lang3.StringUtils;
 

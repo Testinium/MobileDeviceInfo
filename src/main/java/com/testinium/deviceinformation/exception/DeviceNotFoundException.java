@@ -1,4 +1,4 @@
-package com.deviceinformation.deviceinfo.exception;
+package com.testinium.deviceinformation.exception;
 
 public class DeviceNotFoundException extends Exception {
 

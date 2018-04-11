@@ -1,4 +1,4 @@
-package com.deviceinformation.deviceinfo.model;
+package com.testinium.deviceinformation.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
