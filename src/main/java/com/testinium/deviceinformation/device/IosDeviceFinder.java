@@ -40,7 +40,7 @@ public class IosDeviceFinder implements DeviceFinder<Ios> {
 
     @Override
     public Map<String, Object> readDeviceInfo(String localPath) throws IOException {
-        Map<String, Object> parentMap = new HashMap<>();
+        Map<String, Object> parentMap;
         List<Map<String, Object>> deviceMapList = new ArrayList<>();
         Map<String, Object> device = new HashMap<>();
 
@@ -56,6 +56,7 @@ public class IosDeviceFinder implements DeviceFinder<Ios> {
 
             String infoLine;
             BufferedReader infoReader = new BufferedReader(new InputStreamReader(deviceDetailInfoProcess.getInputStream()));
+            parentMap = new HashMap<>();
             while ((infoLine = infoReader.readLine()) != null) {
                 infoLine = infoLine.replaceAll("\\[", "").replaceAll("]", "");
                 String[] detailInfo = infoLine.split(": ", -1);

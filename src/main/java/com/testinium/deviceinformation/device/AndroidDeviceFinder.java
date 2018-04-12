@@ -38,7 +38,7 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
 
     @Override
     public Map<String, Object> readDeviceInfo(String localPath) throws IOException {
-        Map<String, Object> parentMap = new HashMap<>();
+        Map<String, Object> parentMap;
         List<Map<String, Object>> deviceMapList = new ArrayList<>();
         Map<String, Object> device = new HashMap<>();
 
@@ -53,6 +53,7 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
             Process deviceDetailInfoProcess = ProcessHelper.runTimeExec(String.format("%s%s", localPath, ADB_SERIAL_NUMBER_PUT_SHELL_COMMAND).replace("serialNumber", serialNumberArray[0].trim()));
             String infoLine;
             BufferedReader infoReader = new BufferedReader(new InputStreamReader(deviceDetailInfoProcess.getInputStream()));
+            parentMap = new HashMap<>();
             while ((infoLine = infoReader.readLine()) != null) {
                 infoLine = infoLine.replaceAll("\\[", "").replaceAll("]", "");
                 String[] detailInfo = infoLine.split(": ", -1);
