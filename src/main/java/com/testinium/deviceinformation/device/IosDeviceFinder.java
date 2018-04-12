@@ -27,14 +27,14 @@ public class IosDeviceFinder implements DeviceFinder<Ios> {
             throws IOException, DeviceNotFoundException {
         DeviceInfoModel<Ios> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Ios>>() {
         });
-//        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
+        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
 //            throw new DeviceNotFoundException("Device Not Found");
-//            try {
-//                throw new DeviceNotFoundException("Ios Device Not Found");
-//            }catch (Exception e){
-//                System.err.println(e.toString());
-//            }
-//        }
+            try {
+                throw new DeviceNotFoundException("Ios Device Not Found !!!");
+            }catch (DeviceNotFoundException e){
+                System.err.println(e.toString());
+            }
+        }
         return deviceInfoModel;
     }
 

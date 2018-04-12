@@ -25,14 +25,14 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
     public DeviceInfoModel<Android> findDevices(String localPath) throws IOException, DeviceNotFoundException {
         DeviceInfoModel<Android> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Android>>() {
         });
-//        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
+        if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
 //            throw new DeviceNotFoundException("Device Not Found");
-//            try {
-//                throw new DeviceNotFoundException("Android Device Not Found");
-//            }catch (Exception e){
-//                System.err.println(e.toString());
-//            }
-//        }
+            try {
+                throw new DeviceNotFoundException("Android Device Not Found !!!");
+            }catch (DeviceNotFoundException e){
+                System.err.println(e.toString());
+            }
+        }
         return deviceInfoModel;
     }
 
