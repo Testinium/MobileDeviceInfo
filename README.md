@@ -53,3 +53,32 @@ capabilities.setCapability("app", "#Your App File#");
 
 driver = new RemoteWebDriver(new URL(URL), capabilities);
 ```        
+
+
+You can add your project as a maven dependency.
+
+```
+<dependency>
+  <groupId>com.testinium.deviceinformation</groupId>
+  <artifactId>device-information</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
+You have to add our repository to your pom.xml because it hasn't released to Maven Central repositories.
+
+```
+<repositories>
+    <repository>
+      <id>public</id>
+      <name>public</name>
+      <url>http://mvn.testinium.com/repository/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+```  
