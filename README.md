@@ -9,8 +9,14 @@ You need to have **ADB** and **libimobiledevice** installed on your machine
 ADB installation can be done via this [link](https://developer.android.com/studio/index.html )
       
 libimobiledevice can be found on this [link](https://github.com/libimobiledevice/libimobiledevice)
-      
-      
+
+or
+
+brew cask install android-platform-tools
+
+brew install -—HEAD libimobiledevice
+
+
 ## Basic Usage
 ```
  DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ANDROID);
