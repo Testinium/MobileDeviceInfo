@@ -55,9 +55,11 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
             BufferedReader infoReader = new BufferedReader(new InputStreamReader(deviceDetailInfoProcess.getInputStream()));
             parentMap = new HashMap<>();
             while ((infoLine = infoReader.readLine()) != null) {
-                infoLine = infoLine.replaceAll("\\[", "").replaceAll("]", "");
-                String[] detailInfo = infoLine.split(": ", -1);
-                parentMap.put(detailInfo[0].replace(".", "").replace("_", "").replace("-", ""), detailInfo[1]);
+                try {
+                    infoLine = infoLine.replaceAll("\\[", "").replaceAll("]", "");
+                    String[] detailInfo = infoLine.split(": ", -1);
+                    parentMap.put(detailInfo[0].replace(".", "").replace("_", "").replace("-", ""), detailInfo[1]);
+                }catch (Exception e){ }
             }
             infoReader.close();
             deviceMapList.add(parentMap);
