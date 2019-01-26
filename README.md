@@ -14,7 +14,7 @@ or
 
 brew cask install android-platform-tools
 
-brew install -—HEAD libimobiledevice
+brew install --HEAD libimobiledevice
 
 
 ## Basic Usage
@@ -36,10 +36,30 @@ or
         System.out.println("Device id   - " + device.getUniqueDeviceID());
 ```
 
-or
+or ( Attention - Data Comes Late )
+
+```
+ DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.IOSSIMULATOR);
+ if (deviceInfo.anyDeviceConnected()) {
+        Device device = deviceInfo.getFirstDevice();
+        System.out.println("Device Name - " + device.getDeviceProductName());
+        System.out.println("Device id   - " + device.getUniqueDeviceID());
+```
+
+or ( Only Android and IOS Devices Except IOS Simulator )
 
 ```
  DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+ if (deviceInfo.anyDeviceConnected()) {
+        Device device = deviceInfo.getFirstDevice();
+        System.out.println("Device Name - " + device.getDeviceProductName());
+        System.out.println("Device id   - " + device.getUniqueDeviceID());
+```
+
+or (  Attention - Data Comes Late Due To IOS Simulator)
+
+```
+ DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALLANDIOSSIMULATOR);
  if (deviceInfo.anyDeviceConnected()) {
         Device device = deviceInfo.getFirstDevice();
         System.out.println("Device Name - " + device.getDeviceProductName());
@@ -86,5 +106,5 @@ You have to add our repository to your pom.xml because it hasn't released to Mav
         <enabled>true</enabled>
       </snapshots>
     </repository>
-  </repositories>
+</repositories>
 ```  

@@ -6644,6 +6644,7 @@ public class Android implements Device {
 
     @Override
     public String getDeviceProductName() {
-        return getNetbtname();
+//        return getNetbtname();
+        return "Android";
     }
 }

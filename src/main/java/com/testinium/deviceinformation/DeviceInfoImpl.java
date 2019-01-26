@@ -4,7 +4,10 @@ import com.testinium.deviceinformation.device.DeviceFinderFactory;
 import com.testinium.deviceinformation.device.DeviceType;
 import com.testinium.deviceinformation.device.DeviceFinder;
 import com.testinium.deviceinformation.exception.DeviceNotFoundException;
+import com.testinium.deviceinformation.model.Android;
 import com.testinium.deviceinformation.model.Device;
+import com.testinium.deviceinformation.model.Ios;
+import com.testinium.deviceinformation.model.IosSimulator;
 import org.apache.commons.exec.OS;
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,6 +27,10 @@ public class DeviceInfoImpl implements DeviceInfo {
             throw new UnsupportedOperationException("Operation System Is Not Valid! Ios device info only run macos operation system.");
         }
 
+        if (deviceType == DeviceType.IOSSIMULATOR && !isOperationSystemMacOs()) {
+            throw new UnsupportedOperationException("Operation System Is Not Valid! Ios Simulator device info only run macos operation system.");
+        }
+
         deviceFinder = DeviceFinderFactory.createDeviceFinder(deviceType);
     }
 
@@ -35,4 +42,20 @@ public class DeviceInfoImpl implements DeviceInfo {
     public List<Device> getDevices() throws IOException, DeviceNotFoundException {
         return deviceFinder.findDevices().getDevices();
     }
+
+    @Override
+    public List<Android> getAndroidDevices() throws IOException, DeviceNotFoundException {
+        return deviceFinder.findDevices().getAndroidDevices();
+    }
+
+    @Override
+    public List<Ios> getIosDevices() throws IOException, DeviceNotFoundException {
+        return deviceFinder.findDevices().getIosDevices();
+    }
+
+    @Override
+    public List<IosSimulator> getIosSimulatorDevices() throws IOException, DeviceNotFoundException {
+        return deviceFinder.findDevices().getIosSimulatorDevices();
+    }
+
 }

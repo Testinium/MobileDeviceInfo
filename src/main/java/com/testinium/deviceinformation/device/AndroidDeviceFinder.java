@@ -22,11 +22,9 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
     private final String ADB_SERIAL_NUMBER_PUT_SHELL_COMMAND = "adb -s serialNumber shell getprop";
 
     @Override
-    public DeviceInfoModel<Android> findDevices(String localPath) throws IOException, DeviceNotFoundException {
-        DeviceInfoModel<Android> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Android>>() {
-        });
+    public DeviceInfoModel<Android> findDevices(String localPath) throws IOException {
+        DeviceInfoModel<Android> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Android>>() {});
         if (deviceInfoModel == null || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
-//            throw new DeviceNotFoundException("Device Not Found");
             try {
                 throw new DeviceNotFoundException("Android Device Not Found !!!");
             }catch (DeviceNotFoundException e){
@@ -51,6 +49,7 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
             }
             String[] serialNumberArray = line.replace(" ", "").split("device");
             Process deviceDetailInfoProcess = ProcessHelper.runTimeExec(String.format("%s%s", localPath, ADB_SERIAL_NUMBER_PUT_SHELL_COMMAND).replace("serialNumber", serialNumberArray[0].trim()));
+
             String infoLine;
             BufferedReader infoReader = new BufferedReader(new InputStreamReader(deviceDetailInfoProcess.getInputStream()));
             parentMap = new HashMap<>();

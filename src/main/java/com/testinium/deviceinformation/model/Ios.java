@@ -457,7 +457,8 @@ public class Ios implements Device {
 
     @Override
     public String getDeviceProductName() {
-        return getDeviceClass();
+//        return getDeviceClass();
+        return "Ios";
     }
 
     public void setModelNumber(String modelNumber) {

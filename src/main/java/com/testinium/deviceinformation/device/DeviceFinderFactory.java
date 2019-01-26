@@ -12,6 +12,10 @@ public class DeviceFinderFactory {
             deviceFinder = new AndroidDeviceFinder();
         } else if (deviceType == DeviceType.IOS) {
             deviceFinder = new IosDeviceFinder();
+        } else if (deviceType == DeviceType.IOSSIMULATOR) {
+            deviceFinder = new IosSimulatorDeviceFinder();
+        } else if (deviceType == DeviceType.ALLANDIOSSIMULATOR) {
+            deviceFinder = new AllDeviceFinder(deviceType);
         } else if (deviceType == DeviceType.ALL) {
             deviceFinder = new AllDeviceFinder();
         } else {
