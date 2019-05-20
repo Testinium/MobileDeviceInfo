@@ -1808,6 +1808,9 @@ public class Android implements Device {
     @SerializedName("rorilgprsclass")
     @Expose
     private String rorilgprsclass;
+    @SerializedName("mIccidsim")
+    @Expose
+    private String mIccidsim;
 
     public String getRohwuitextsmallcachewidth() {
         return rohwuitextsmallcachewidth;
@@ -6617,6 +6620,14 @@ public class Android implements Device {
         this.rorilgprsclass = rorilgprsclass;
     }
 
+    public String getMIccidsim() {
+        return mIccidsim;
+    }
+
+    public void setMIccidsim(String mIccidsim) {
+        this.mIccidsim = mIccidsim;
+    }
+
     @Override
     public String getUniqueDeviceID() {
         return getRoserialno();
@@ -6646,5 +6657,10 @@ public class Android implements Device {
     public String getDeviceProductName() {
 //        return getNetbtname();
         return "Android";
+    }
+
+    @Override
+    public String getIntegratedCircuitCardIdentity() {
+        return getMIccidsim();
     }
 }

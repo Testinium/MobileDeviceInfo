@@ -2,15 +2,18 @@ package com.testinium.deviceinformation.model;
 
 public interface Device {
 
-    String getUniqueDeviceID();
+  String getUniqueDeviceID();
 
-    String getProductVersion();
+  String getProductVersion();
 
-    String getBuildVersion();
+  String getBuildVersion();
 
-    String getSerialNumber();
+  String getSerialNumber();
 
-    String getModelNumber();
+  String getModelNumber();
 
-    String getDeviceProductName();
+  String getDeviceProductName();
+
+  String getIntegratedCircuitCardIdentity();
+
 }

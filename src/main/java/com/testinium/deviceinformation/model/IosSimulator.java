@@ -181,4 +181,9 @@ public class IosSimulator implements Device {
   public String getDeviceProductName() {
     return "Ios Simulator";
   }
+
+  @Override
+  public String getIntegratedCircuitCardIdentity() {
+    return null;
+  }
 }

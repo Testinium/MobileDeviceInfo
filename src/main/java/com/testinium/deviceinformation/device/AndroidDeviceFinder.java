@@ -1,13 +1,11 @@
 package com.testinium.deviceinformation.device;
 
+import com.google.gson.reflect.TypeToken;
 import com.testinium.deviceinformation.exception.DeviceNotFoundException;
 import com.testinium.deviceinformation.helper.JsonHelper;
 import com.testinium.deviceinformation.helper.ProcessHelper;
 import com.testinium.deviceinformation.model.Android;
 import com.testinium.deviceinformation.model.DeviceInfoModel;
-import com.google.gson.reflect.TypeToken;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,11 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 public class AndroidDeviceFinder implements DeviceFinder<Android> {
 
     private final String ADB_LIST_SHELL_COMMAND = "adb devices";
     private final String ADB_SERIAL_NUMBER_PUT_SHELL_COMMAND = "adb -s serialNumber shell getprop";
+    private final String ADB_INTEGRATED_CIRCUIT_CARD_IDENTITY_SHELL_COMMAND = "adb -s serialNumber shell dumpsys CustomFrequencyManagerService | grep 'mIccid sim'";
 
     @Override
     public DeviceInfoModel<Android> findDevices(String localPath) throws IOException {
@@ -60,6 +60,16 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
                     parentMap.put(detailInfo[0].replace(".", "").replace("_", "").replace("-", ""), detailInfo[1]);
                 }catch (Exception e){ }
             }
+            Process deviceListProcessOnlyCard = ProcessHelper.runTimeExec(
+                String.format("%s%s", localPath, ADB_INTEGRATED_CIRCUIT_CARD_IDENTITY_SHELL_COMMAND)
+                    .replace("serialNumber", serialNumberArray[0].trim()));
+            BufferedReader readerOnlyCard = new BufferedReader(
+                new InputStreamReader(deviceListProcessOnlyCard.getInputStream()));
+
+            String[] mIccidsim = readerOnlyCard.readLine().replaceAll(" ", "").split("=");
+            parentMap.put(mIccidsim[0], mIccidsim[1]);
+
+            readerOnlyCard.close();
             infoReader.close();
             deviceMapList.add(parentMap);
             device.put("android", deviceMapList);
