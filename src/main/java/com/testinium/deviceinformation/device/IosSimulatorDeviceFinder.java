@@ -10,6 +10,7 @@ import com.testinium.deviceinformation.helper.JsonHelper;
 import com.testinium.deviceinformation.helper.ProcessHelper;
 import com.testinium.deviceinformation.model.DeviceInfoModel;
 import com.testinium.deviceinformation.model.IosSimulator;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

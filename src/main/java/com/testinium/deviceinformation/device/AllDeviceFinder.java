@@ -1,11 +1,7 @@
 package com.testinium.deviceinformation.device;
 
 import com.testinium.deviceinformation.exception.DeviceNotFoundException;
-import com.testinium.deviceinformation.model.Android;
-import com.testinium.deviceinformation.model.Device;
-import com.testinium.deviceinformation.model.DeviceInfoModel;
-import com.testinium.deviceinformation.model.Ios;
-import com.testinium.deviceinformation.model.IosSimulator;
+import com.testinium.deviceinformation.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;

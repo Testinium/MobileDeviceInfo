@@ -1,8 +1,8 @@
 package com.testinium.deviceinformation;
 
+import com.testinium.deviceinformation.device.DeviceFinder;
 import com.testinium.deviceinformation.device.DeviceFinderFactory;
 import com.testinium.deviceinformation.device.DeviceType;
-import com.testinium.deviceinformation.device.DeviceFinder;
 import com.testinium.deviceinformation.exception.DeviceNotFoundException;
 import com.testinium.deviceinformation.model.Android;
 import com.testinium.deviceinformation.model.Device;

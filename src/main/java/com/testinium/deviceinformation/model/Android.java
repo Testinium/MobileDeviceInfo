@@ -1811,6 +1811,10 @@ public class Android implements Device {
     @SerializedName("mIccidsim")
     @Expose
     private String mIccidsim;
+    @SerializedName("UniqueDeviceID")
+    @Expose
+    private String uniqueDeviceID;
+
 
     public String getRohwuitextsmallcachewidth() {
         return rohwuitextsmallcachewidth;
@@ -6628,9 +6632,12 @@ public class Android implements Device {
         this.mIccidsim = mIccidsim;
     }
 
-    @Override
     public String getUniqueDeviceID() {
-        return getRoserialno();
+        return uniqueDeviceID;
+    }
+
+    public void setUniqueDeviceID(String uniqueDeviceID) {
+        this.uniqueDeviceID = uniqueDeviceID;
     }
 
     @Override

@@ -1,11 +1,11 @@
 package com.testinium.deviceinformation.device;
 
+import com.google.gson.reflect.TypeToken;
 import com.testinium.deviceinformation.exception.DeviceNotFoundException;
 import com.testinium.deviceinformation.helper.JsonHelper;
 import com.testinium.deviceinformation.helper.ProcessHelper;
 import com.testinium.deviceinformation.model.DeviceInfoModel;
 import com.testinium.deviceinformation.model.Ios;
-import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;

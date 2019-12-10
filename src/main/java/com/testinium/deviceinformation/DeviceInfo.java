@@ -1,12 +1,14 @@
 package com.testinium.deviceinformation;
 
 import com.testinium.deviceinformation.exception.DeviceNotFoundException;
-import com.testinium.deviceinformation.model.Device;
 import com.testinium.deviceinformation.model.Android;
+import com.testinium.deviceinformation.model.Device;
 import com.testinium.deviceinformation.model.Ios;
 import com.testinium.deviceinformation.model.IosSimulator;
+
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface DeviceInfo {
 
@@ -19,7 +21,11 @@ public interface DeviceInfo {
     }
 
     default Android getFirstAndroid() throws IOException, DeviceNotFoundException {
-        return (Android) getDevices().stream().filter(device -> device.getDeviceProductName().contains("Android")).findFirst().orElse(null);
+        return (Android) getDevices().stream().filter(device -> device.getDeviceProductName().contains("Android")).filter(device -> device.getSerialNumber() != null).filter(device -> !device.getModelNumber().contains("SDK")).findFirst().orElse(null);
+    }
+
+    default Android getFirstAndroidEmulator() throws IOException, DeviceNotFoundException {
+        return (Android) getDevices().stream().filter(device -> device.getDeviceProductName().contains("Android")).filter(device -> device.getSerialNumber() == null).filter(device -> device.getModelNumber().contains("SDK")).findFirst().orElse(null);
     }
 
     default Ios getFirstIos() throws IOException, DeviceNotFoundException {
@@ -31,7 +37,11 @@ public interface DeviceInfo {
     }
 
     default Device getFirstAndroidDevice() throws IOException, DeviceNotFoundException {
-        return getDevices().stream().filter(device -> device.getDeviceProductName().contains("Android")).findFirst().orElse(null);
+        return getDevices().stream().filter(device -> device.getDeviceProductName().contains("Android")).filter(device -> device.getSerialNumber() != null).filter(device -> !device.getModelNumber().contains("SDK")).findFirst().orElse(null);
+    }
+
+    default Device getFirstAndroidEmulatorDevice() throws IOException, DeviceNotFoundException {
+        return getDevices().stream().filter(device -> device.getDeviceProductName().contains("Android")).filter(device -> device.getSerialNumber() == null).filter(device -> device.getModelNumber().contains("SDK")).findFirst().orElse(null);
     }
 
     default Device getFirstIosDevice() throws IOException, DeviceNotFoundException {
@@ -44,6 +54,10 @@ public interface DeviceInfo {
 
     default List<Android> getAndroidDevices() throws IOException, DeviceNotFoundException {
         return getAndroidDevices();
+    }
+
+    default List<Android> getAndroidEmulatorDevices() throws IOException, DeviceNotFoundException {
+        return getAndroidDevices().stream().filter(device -> device.getDeviceProductName().contains("Android")).filter(device -> device.getSerialNumber() == null).filter(device -> device.getModelNumber().contains("SDK")).collect(Collectors.toList());
     }
 
     default List<Ios> getIosDevices() throws IOException, DeviceNotFoundException {
