@@ -87,7 +87,7 @@ You can add your project as a maven dependency.
 <dependency>
   <groupId>com.testinium.deviceinformation</groupId>
   <artifactId>device-information</artifactId>
-  <version>1.0</version>
+  <version>2.0</version>
 </dependency>
 ```
 
